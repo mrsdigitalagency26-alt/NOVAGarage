@@ -37,7 +37,7 @@
 <header>
   <div class="container nav">
     <div style="display:flex;align-items:center;gap:12px">
-      <img id="brandLogo" src="/logo.jpg" alt="NOVA Garage" style="height:44px;width:auto;border-radius:8px;object-fit:contain;background:#0b1220"/>
+      <img id="brandLogo" src="/logo.png" alt="NOVA Garage" style="height:44px;width:auto;border-radius:8px;object-fit:contain;background:#0b1220"/>
       <strong>NOVA Garage</strong>
     </div>
     <nav class="links">
@@ -181,11 +181,7 @@
     </div>
     <div class="card">
       <h2 data-i="contact.quick">Demande rapide</h2>
-      <form id="contactForm" name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact">
-        <p style="display:none">
-          <label>Ne pas remplir: <input name="bot-field"></label>
-        </p>
+      <form id="contactForm" name="contact">
         <label><span data-i="contact.name">Nom</span><br><input name="name" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0e1a2d;color:#fff"></label><br><br>
         <label><span data-i="contact.phone">Téléphone / WhatsApp</span><br><input name="phone" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0e1a2d;color:#fff"></label><br><br>
         <label><span data-i="contact.sel">Sélectionnez un service</span><br>
@@ -380,24 +376,27 @@
     tryNext();
   })();
 
-  // Netlify Forms AJAX submit (no reload)
+  // Mailto composer submit (opens user's email app)
   (function(){
     const form = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
     if(!form) return;
-    form.addEventListener('submit', async (e)=>{
+    form.addEventListener('submit', (e)=>{
       e.preventDefault();
-      if(status) status.textContent = 'Envoi…';
       const data = new FormData(form);
-      try{
-        const res = await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams([...data]).toString()});
-        if(res.ok){
-          if(status) status.textContent = 'Merci ! Votre message a été envoyé.';
-          form.reset();
-        } else { throw new Error('HTTP '+res.status); }
-      }catch(err){
-        if(status) status.textContent = "Oups, échec de l'envoi. Contactez-nous via WhatsApp.";
-      }
+      const name = (data.get('name')||'').toString().trim();
+      const phone = (data.get('phone')||'').toString().trim();
+      const service = (data.get('service')||'').toString().trim();
+      const msg = (data.get('message')||'').toString().trim();
+      const to = 'novagarage.mn@gmail.com';
+      const subject = encodeURIComponent(`Demande devis – ${name||'Client'}`);
+      const body = encodeURIComponent(
+        `Bonjour NOVA Garage,%0A%0AJe souhaite un devis pour : ${service}.%0A%0ANom : ${name}%0ATéléphone/WhatsApp : ${phone}%0A%0ADétails :%0A${msg}%0A%0AMerci !`
+      );
+      const href = `mailto:${to}?subject=${subject}&body=${body}`;
+      if(status) status.textContent = "Votre application mail s’ouvre…";
+      window.location.href = href;
+      setTimeout(()=>{ if(status) status.textContent = ""; }, 4000);
     });
   })();
 
