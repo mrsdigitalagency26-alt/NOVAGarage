@@ -37,7 +37,7 @@
 <header>
   <div class="container nav">
     <div style="display:flex;align-items:center;gap:12px">
-      <img id="brandLogo" src="/logo.png" alt="NOVA Garage" style="height:44px;width:auto;border-radius:8px;object-fit:contain;background:#0b1220"/>
+      <img id="brandLogo" src="logo.png" alt="NOVA Garage" style="height:44px;width:auto;border-radius:8px;object-fit:contain;background:#0b1220"/>
       <strong>NOVA Garage</strong>
     </div>
     <nav class="links">
@@ -364,14 +364,20 @@
   // Robust logo fallback (tries multiple file names) — single definition
   (function(){
     const logo = document.getElementById('brandLogo');
-    const candidates = ['/logo.jpg','/logo.png','/logo-nova-garage.jpg','/logo-nova-garage.png','/nova_garage_logo.jpg','/nova_garage_logo.png'];
+    const candidates = ['logo.png','logo.jpg','images/logo.png','images/logo.jpg','assets/logo.png','assets/logo.jpg','/logo.png','/logo.jpg'];
     let idx = 0;
     function tryNext(){
-      if(!logo || idx>=candidates.length) return;
+      if(!logo || idx>=candidates.length){
+        console.warn('NOVA logo: no candidate matched');
+        // graceful placeholder
+        if(logo){ logo.outerHTML = '<div style="height:44px;display:flex;align-items:center;color:#cfe0ff">NOVA Garage</div>'; }
+        return;
+      }
+      const url = candidates[idx];
       const test = new Image();
-      test.onload = ()=>{ logo.src = candidates[idx]; };
-      test.onerror = ()=>{ idx++; tryNext(); };
-      test.src = candidates[idx];
+      test.onload = ()=>{ console.log('NOVA logo loaded:', url); logo.src = url; };
+      test.onerror = ()=>{ console.warn('NOVA logo not found:', url); idx++; tryNext(); };
+      test.src = url;
     }
     tryNext();
   })();
