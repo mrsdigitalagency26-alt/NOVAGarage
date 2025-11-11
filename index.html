@@ -1,0 +1,544 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Car, Phone, Mail, MessageCircle, ChevronRight, Star, Wrench, Droplets, Shield, Info, MapPin, Facebook, Instagram, Languages } from "lucide-react";
+
+// === Constants ===
+const WHATSAPP_URL = "https://wa.me/32489202801"; // 0489202801 -> +32
+const EMAIL_URL = "mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage&body=Bonjour%20NOVA%20Garage,%5CnJe%20souhaite%20un%20devis%20pour%20:%20";
+
+// === i18n dictionaries (FR default) ===
+const dict = {
+  fr: {
+    langName: "Français",
+    nav: { home: "Accueil", services: "Services & Tarifs", faq: "FAQ", contact: "Contact", gallery: "Galerie", about: "À propos" },
+    hero: {
+      titleA: "Not only clean —",
+      titleB: "NOVA clean.",
+      subtitle: "Detailing auto premium avec produits Koch Chemie, microfibres professionnelles et souci du détail. À domicile ou en atelier.",
+      ctaWa: "Demander un devis WhatsApp",
+      ctaMail: "Demander par e‑mail",
+      rating: "Service client 5★"
+    },
+    pricing: {
+      h2: "Services & Tarifs",
+      lead: "Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.",
+      pack: "Forfait",
+      cats: ["Citadine","Berline","Break","SUV","Utilitaire"],
+      notes: [
+        { t: "Intérieur – NOVA Standard", n: "Aspiration, plastiques, vitres, désodorisation." },
+        { t: "Intérieur – NOVA Premium", n: "Puzzi 8/1, Pol Star / Green Star, soin cuir/textile." },
+        { t: "Intérieur – NOVA Deluxe", n: "Detailling complet, vapeur, protection UV, finitions." },
+        { t: "Extérieur – NOVA Standard", n: "Prélavage, lavage manuel, jantes rapide, séchage." },
+        { t: "Extérieur – NOVA Premium", n: "Mousse active, décontamination, ProtectorWax." },
+        { t: "Extérieur – NOVA Deluxe", n: "Polish léger, cire premium, vitres hydrophobes." },
+        { t: "Combiné – NOVA Standard", n: "Intérieur standard + extérieur manuel." },
+        { t: "Combiné – NOVA Premium", n: "Intérieur complet + extérieur cire express." },
+        { t: "Combiné – NOVA Deluxe", n: "Detailling total, polish léger, finition showroom." }
+      ],
+      foot: [
+        "• Supplément (+20–40 €) pour véhicules très sales ou utilitaires pros.",
+        "• Prix TTC – ajustables selon l’état et le niveau demandé.",
+        "• Chaque prestation inclut le ‘NOVA Quality Check’."
+      ],
+      download: "Télécharger la liste de prix (PDF)",
+      ctaWa: "Devis WhatsApp",
+      ctaMail: "Envoyer un e‑mail"
+    },
+    faq: {
+      h2: "Questions fréquentes",
+      items: [
+        ["Utilisez‑vous l’eau et l’électricité du client ?","Oui, la consommation est faible (comme un aspirateur domestique et une courte douche). Nous avons nos propres rallonges et tuyaux. Sur demande, nous pouvons travailler en autonomie."],
+        ["Combien de temps dure un forfait Premium ?","En moyenne 3–5 h pour un combiné, selon la taille et l’état du véhicule."],
+        ["Quels produits utilisez‑vous ?","Koch Chemie : Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner ; microfibres CROP."],
+        ["Intervenez‑vous à domicile ?","Oui, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. RDV par WhatsApp ou e‑mail."]
+      ]
+    },
+    contact: {
+      h2: "Contact & Devis",
+      lead: "Écrivez‑nous et nous répondons rapidement avec une offre personnalisée.",
+      direct: "Contact direct",
+      quick: "Demande rapide",
+      name: "Nom",
+      phone: "Téléphone / WhatsApp",
+      sel: "Sélectionnez un service",
+      opts: ["Intérieur Premium","Extérieur Premium","Combiné Premium","Autre"],
+      placeholder: "Modèle véhicule + vos besoins",
+      send: "Envoyer",
+      wa: "WhatsApp",
+      note: "Pour les sociétés / flottes, nous proposons des packs mensuels personnalisés."
+    },
+    about: {
+      h2: "À propos de NOVA Garage",
+      p: "Studio de detailing personnel, orienté qualité et transparence. ‘Not only clean – NOVA clean’.",
+      bullets: [
+        "Assurance & responsabilité pro",
+        "Procédures sûres cuir, textiles, vernis",
+        "Méthode deux seaux, microfibres 380–820 g",
+        "Service mobile : Halle, Waterloo, Uccle, etc."
+      ],
+      pdf: "Télécharger le PDF Tarifs"
+    },
+    gallery: { h2: "Galerie", lead: "Ajoutez vos photos Avant / Après dans /gallery." },
+    footer: {
+      blurb: "Detailing auto premium – mobile ou en atelier, à Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",
+      quick: "Liens rapides",
+      contact: "Contact",
+      rights: (y:number)=>`© ${y} NOVA Garage. Tous droits réservés.`
+    }
+  },
+  nl: {
+    langName: "Nederlands",
+    nav: { home: "Home", services: "Diensten & Prijzen", faq: "FAQ", contact: "Contact", gallery: "Galerij", about: "Over ons" },
+    hero: {
+      titleA: "Not only clean —",
+      titleB: "NOVA clean.",
+      subtitle: "Premium autodetailing met Koch Chemie, professionele microvezels en oog voor detail. Aan huis of in atelier.",
+      ctaWa: "Offerte via WhatsApp",
+      ctaMail: "Vraag per e‑mail",
+      rating: "Klantentevredenheid 5★"
+    },
+    pricing: {
+      h2: "Diensten & Prijzen",
+      lead: "Prijzen per categorie: Stadswagen, Berline, Break, SUV, Bestel.",
+      pack: "Formule",
+      cats: ["Stadswagen","Berline","Break","SUV","Bestel"],
+      notes: [
+        { t: "Interieur – NOVA Standard", n: "Stofzuigen, kunststoffen, ramen, geurverfrissing." },
+        { t: "Interieur – NOVA Premium", n: "Puzzi 8/1, Pol Star / Green Star, leder/textiel verzorging." },
+        { t: "Interieur – NOVA Deluxe", n: "Volledige detailing, stoom, UV‑bescherming, afwerking." },
+        { t: "Exterieur – NOVA Standard", n: "Voorwas, handwas, snelle velgen, drogen." },
+        { t: "Exterieur – NOVA Premium", n: "Schuim, decontaminatie, ProtectorWax." },
+        { t: "Exterieur – NOVA Deluxe", n: "Lichte polish, premium wax, hydrofobe ruiten." },
+        { t: "Combi – NOVA Standard", n: "Interieur standaard + handwas buiten." },
+        { t: "Combi – NOVA Premium", n: "Interieur volledig + buiten met express wax." },
+        { t: "Combi – NOVA Deluxe", n: "Totale detailing, lichte polish, showroom finish." }
+      ],
+      foot: [
+        "• Toeslag (+20–40 €) voor zeer vuile voertuigen of professionele bestelwagens.",
+        "• Prijzen incl. btw – aanpasbaar volgens staat en gewenst niveau.",
+        "• Elke service bevat de ‘NOVA Quality Check’."
+      ],
+      download: "Prijslijst downloaden (PDF)",
+      ctaWa: "WhatsApp offerte",
+      ctaMail: "E‑mail sturen"
+    },
+    faq: {
+      h2: "Veelgestelde vragen",
+      items: [
+        ["Gebruiken jullie water en elektriciteit van de klant?","Ja, verbruik is laag (zoals een huisstofzuiger en korte douche). We hebben eigen haspels en verlengkabels. Op verzoek kunnen we autonoom werken."],
+        ["Hoelang duurt een Premium?","Gemiddeld 3–5 u voor een combi, afhankelijk van grootte en staat."],
+        ["Welke producten gebruiken jullie?","Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microvezels."],
+        ["Werken jullie aan huis?","Ja, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. Afspraak via WhatsApp of e‑mail."]
+      ]
+    },
+    contact: {
+      h2: "Contact & Offerte",
+      lead: "Stuur ons een bericht en we reageren snel met een gepersonaliseerde offerte.",
+      direct: "Direct contact",
+      quick: "Snelle aanvraag",
+      name: "Naam",
+      phone: "Telefoon / WhatsApp",
+      sel: "Kies een dienst",
+      opts: ["Interieur Premium","Exterieur Premium","Combi Premium","Andere"],
+      placeholder: "Model + gewenste werken",
+      send: "Verzenden",
+      wa: "WhatsApp",
+      note: "Voor bedrijven/vloten bieden we maandpakketten op maat."
+    },
+    about: {
+      h2: "Over NOVA Garage",
+      p: "Persoonlijke detailingstudio, focus op kwaliteit en transparantie. ‘Not only clean – NOVA clean’.",
+      bullets: [
+        "Verzekering & beroepsaansprakelijkheid",
+        "Veilige procedures voor leder, textiel en lak",
+        "Twee‑emmers‑methode, microvezels 380–820 g",
+        "Mobiele service: Halle, Waterloo, Ukkel enz."
+      ],
+      pdf: "PDF Prijzen downloaden"
+    },
+    gallery: { h2: "Galerij", lead: "Voeg je Voor/Na foto’s toe in /gallery." },
+    footer: {
+      blurb: "Premium autodetailing – mobiel of in atelier, in Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel.",
+      quick: "Snelle links",
+      contact: "Contact",
+      rights: (y:number)=>`© ${y} NOVA Garage. Alle rechten voorbehouden.`
+    }
+  },
+  en: {
+    langName: "English",
+    nav: { home: "Home", services: "Services & Pricing", faq: "FAQ", contact: "Contact", gallery: "Gallery", about: "About" },
+    hero: {
+      titleA: "Not only clean —",
+      titleB: "NOVA clean.",
+      subtitle: "Premium car detailing with Koch Chemie products, pro microfibres and meticulous care. Mobile or on‑site.",
+      ctaWa: "Request on WhatsApp",
+      ctaMail: "Request by e‑mail",
+      rating: "5★ client service"
+    },
+    pricing: {
+      h2: "Services & Pricing",
+      lead: "Prices by category: City, Sedan, Estate, SUV, Van.",
+      pack: "Package",
+      cats: ["City","Sedan","Estate","SUV","Van"],
+      notes: [
+        { t: "Interior – NOVA Standard", n: "Vacuum, plastics, windows, deodorise." },
+        { t: "Interior – NOVA Premium", n: "Puzzi 8/1, Pol Star / Green Star, leather/fabric care." },
+        { t: "Interior – NOVA Deluxe", n: "Full detailing, steam, UV protection, finishes." },
+        { t: "Exterior – NOVA Standard", n: "Pre‑wash, hand wash, quick wheels, dry." },
+        { t: "Exterior – NOVA Premium", n: "Active foam, decontamination, ProtectorWax." },
+        { t: "Exterior – NOVA Deluxe", n: "Light polish, premium wax, hydrophobic glass." },
+        { t: "Combo – NOVA Standard", n: "Standard interior + manual exterior." },
+        { t: "Combo – NOVA Premium", n: "Full interior + exterior with express wax." },
+        { t: "Combo – NOVA Deluxe", n: "Total detailing, light polish, showroom finish." }
+      ],
+      foot: [
+        "• Surcharge (+€20–40) for very dirty vehicles or pro vans.",
+        "• VAT included – adjustable by condition and requested level.",
+        "• Each service includes the ‘NOVA Quality Check’."
+      ],
+      download: "Download price list (PDF)",
+      ctaWa: "WhatsApp quote",
+      ctaMail: "Send e‑mail"
+    },
+    faq: {
+      h2: "Frequently asked questions",
+      items: [
+        ["Do you use the customer’s water and power?","Yes, usage is minimal (like a home vacuum and a short shower). We bring our own hoses and extensions. On request we can work fully autonomous."],
+        ["How long does a Premium take?","On average 3–5 h for a combo, depending on size and condition."],
+        ["Which products do you use?","Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microfibres."],
+        ["Do you come to my place?","Yes, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. Book via WhatsApp or e‑mail."]
+      ]
+    },
+    contact: {
+      h2: "Contact & Quote",
+      lead: "Send us a message and we’ll reply quickly with a tailored quote.",
+      direct: "Direct contact",
+      quick: "Quick request",
+      name: "Name",
+      phone: "Phone / WhatsApp",
+      sel: "Select a service",
+      opts: ["Interior Premium","Exterior Premium","Full Premium","Other"],
+      placeholder: "Car model + your needs",
+      send: "Send",
+      wa: "WhatsApp",
+      note: "For companies/fleets we offer monthly custom packages."
+    },
+    about: {
+      h2: "About NOVA Garage",
+      p: "Personal detailing studio focused on quality and transparency. ‘Not only clean – NOVA clean’.",
+      bullets: [
+        "Insurance & professional liability",
+        "Safe procedures for leather, fabrics and paint",
+        "Two‑bucket method, 380–820 g microfibres",
+        "Mobile service: Halle, Waterloo, Uccle, etc."
+      ],
+      pdf: "Download Pricing PDF"
+    },
+    gallery: { h2: "Gallery", lead: "Add your Before/After photos in /gallery." },
+    footer: {
+      blurb: "Premium mobile/on‑site detailing across Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",
+      quick: "Quick links",
+      contact: "Contact",
+      rights: (y:number)=>`© ${y} NOVA Garage. All rights reserved.`
+    }
+  }
+} as const;
+
+function useI18n() {
+  const [lang, setLang] = useState<"fr"|"nl"|"en">("fr");
+  const t = dict[lang];
+  return { lang, setLang, t };
+}
+
+function LangSwitcher({ lang, setLang }: { lang: "fr"|"nl"|"en"; setLang: (l:any)=>void }){
+  return (
+    <div className="flex items-center gap-2 text-slate-200">
+      <Languages size={18} className="opacity-80"/>
+      {(["fr","nl","en"] as const).map((l)=> (
+        <button key={l} onClick={()=>setLang(l)} className={`text-sm rounded-full px-3 py-1 border transition ${lang===l?"bg-slate-800 text-white border-slate-700":"text-slate-300 border-slate-700 hover:bg-slate-800/60"}`}>{dict[l].langName}</button>
+      ))}
+    </div>
+  );
+}
+
+// === Layout ===
+function Nav({ route, setRoute, lang, setLang }: { route: string; setRoute: (r: string) => void; lang: "fr"|"nl"|"en"; setLang: (l:any)=>void }) {
+  const { t } = { t: dict[lang] };
+  const links = [
+    { key: "home", label: t.nav.home },
+    { key: "services", label: t.nav.services },
+    { key: "faq", label: t.nav.faq },
+    { key: "contact", label: t.nav.contact },
+    { key: "gallery", label: t.nav.gallery },
+    { key: "about", label: t.nav.about },
+  ];
+  return (
+    <div className="w-full sticky top-0 z-50 bg-slate-900/80 backdrop-blur border-b border-slate-800">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+        <div className="flex items-center gap-3">
+          <img src="/logo-nova-garage.jpg" alt="NOVA Garage" className="h-10 w-auto rounded" />
+          <div className="text-slate-200 font-semibold tracking-wide">NOVA Garage</div>
+        </div>
+        <div className="hidden md:flex items-center gap-6 text-slate-200">
+          {links.map((l) => (
+            <button key={l.key} onClick={() => setRoute(l.key)} className={`hover:text-white transition ${route===l.key?"text-white":"text-slate-300"}`}>
+              {l.label}
+            </button>
+          ))}
+          <a href={WHATSAPP_URL} target="_blank" className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white shadow">
+            <MessageCircle size={18} /> WhatsApp
+          </a>
+          <LangSwitcher lang={lang} setLang={setLang} />
+        </div>
+        <div className="md:hidden flex items-center gap-3">
+          <LangSwitcher lang={lang} setLang={setLang} />
+          <a href={WHATSAPP_URL} target="_blank" className="inline-flex items-center gap-2 rounded-2xl px-3 py-2 bg-emerald-500 text-white">
+            <MessageCircle size={18} />
+          </a>
+        </div>
+      </div>
+      <div className="md:hidden border-t border-slate-800 px-4 py-2 flex flex-wrap gap-3">
+        {links.map((l) => (
+          <button key={l.key} onClick={() => setRoute(l.key)} className={`text-sm rounded-full px-3 py-1 border ${route===l.key?"bg-slate-800 text-white border-slate-700":"text-slate-300 border-slate-700"}`}>
+            {l.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Footer({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang];
+  return (
+    <footer className="mt-16 border-t border-slate-800 bg-slate-900">
+      <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8 text-slate-300">
+        <div>
+          <div className="text-white font-semibold text-lg">NOVA Garage</div>
+          <p className="mt-2 text-sm">{t.footer.blurb}</p>
+          <div className="mt-4 flex gap-3">
+            <a href={WHATSAPP_URL} target="_blank" className="inline-flex items-center gap-2 rounded-xl px-3 py-2 bg-emerald-500 text-white"><MessageCircle size={18}/>WhatsApp</a>
+            <a href={EMAIL_URL} className="inline-flex items-center gap-2 rounded-xl px-3 py-2 border border-slate-700 text-slate-200"><Mail size={18}/>Email</a>
+          </div>
+        </div>
+        <div>
+          <div className="text-white font-semibold">{t.footer.quick}</div>
+          <ul className="mt-2 space-y-1 text-sm">
+            <li>• {dict[lang].nav.services}</li>
+            <li>• {dict[lang].nav.faq}</li>
+            <li>• Privacy</li>
+          </ul>
+        </div>
+        <div>
+          <div className="text-white font-semibold">{dict[lang].footer.contact}</div>
+          <p className="mt-2 text-sm flex items-center gap-2"><Phone size={16}/> +32 489 20 28 01</p>
+          <p className="text-sm flex items-center gap-2"><Mail size={16}/> novagarage.mn@gmail.com</p>
+          <p className="text-sm flex items-center gap-2"><MapPin size={16}/> Halle & environs</p>
+          <div className="mt-3 flex gap-3 text-slate-400">
+            <a href="#" aria-label="Instagram"><Instagram size={18}/></a>
+            <a href="#" aria-label="Facebook"><Facebook size={18}/></a>
+          </div>
+        </div>
+      </div>
+      <div className="text-center text-xs text-slate-500 pb-6">{dict[lang].footer.rights(new Date().getFullYear())}</div>
+    </footer>
+  );
+}
+
+// === Sections ===
+function Hero({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].hero;
+  return (
+    <section className="relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <motion.h1 initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:0.6}} className="text-3xl md:text-5xl font-bold text-white leading-tight">
+            {t.titleA} <span className="text-emerald-400">{t.titleB}</span>
+          </motion.h1>
+          <p className="mt-4 text-slate-300">{t.subtitle}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={WHATSAPP_URL} target="_blank" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg"><MessageCircle size={18}/> {t.ctaWa}</a>
+            <a href={EMAIL_URL} className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-slate-700 text-slate-100"><Mail size={18}/> {t.ctaMail}</a>
+          </div>
+          <div className="mt-6 flex items-center gap-2 text-amber-400"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/> <span className="text-slate-300 text-sm">{t.rating}</span></div>
+        </div>
+        <div className="md:justify-self-end">
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-6 shadow-xl">
+            <img src="/logo-nova-garage.jpg" alt="NOVA Garage" className="w-full rounded-2xl object-contain"/>
+            <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-slate-200"><Droplets className="mx-auto"/> Wash pro</div>
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-slate-200"><Shield className="mx-auto"/> Protection</div>
+              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-slate-200"><Wrench className="mx-auto"/> Finition</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].pricing;
+  const priceRows = [
+    ["80 €","90 €","100 €","110 €","130 €"],
+    ["120 €","140 €","150 €","160 €","190 €"],
+    ["160 €","180 €","200 €","220 €","250 €"],
+    ["60 €","70 €","80 €","90 €","110 €"],
+    ["100 €","120 €","130 €","140 €","170 €"],
+    ["150 €","170 €","190 €","210 €","250 €"],
+    ["120 €","140 €","150 €","160 €","180 €"],
+    ["180 €","200 €","220 €","240 €","280 €"],
+    ["250 €","280 €","300 €","330 €","380 €"],
+  ];
+
+  return (
+    <section className="max-w-6xl mx-auto px-4 py-12">
+      <h2 className="text-3xl font-bold text-white">{t.h2}</h2>
+      <p className="text-slate-300 mt-2">{t.lead}</p>
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-800">
+        <table className="min-w-[760px] w-full text-sm">
+          <thead className="bg-slate-800 text-slate-100">
+            <tr>
+              <th className="text-left p-3">{t.pack}</th>
+              {t.cats.map((c,i)=> <th key={i} className="p-3">{c}</th>)}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-800 bg-slate-900 text-slate-200">
+            {t.notes.map((r, idx) => (
+              <tr key={idx} className="hover:bg-slate-800/60">
+                <td className="p-3 text-left">
+                  <div className="font-medium">{r.t}</div>
+                  <div className="text-xs text-slate-400">{r.n}</div>
+                </td>
+                {priceRows[idx].map((p, i) => (
+                  <td key={i} className="p-3 text-center">{p}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-4 text-slate-400 text-sm space-y-1">
+        {t.foot.map((l,i)=>(<p key={i}>{l}</p>))}
+        <a href="/NOVA_GARAGE_Tarifs.pdf" className="inline-flex items-center gap-2 mt-3 text-emerald-400 hover:underline"><ChevronRight size={16}/> {t.download}</a>
+      </div>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <a href={WHATSAPP_URL} target="_blank" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-emerald-500 text-white"><MessageCircle size={18}/> {t.ctaWa}</a>
+        <a href={EMAIL_URL} className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-slate-700 text-slate-100"><Mail size={18}/> {t.ctaMail}</a>
+      </div>
+    </section>
+  );
+}
+
+function FAQ({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].faq;
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="max-w-4xl mx-auto px-4 py-12">
+      <h2 className="text-3xl font-bold text-white">{t.h2}</h2>
+      <div className="mt-6 space-y-3">
+        {t.items.map(([q,a]:any, i:number) => (
+          <div key={i} className="rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden">
+            <button onClick={() => setOpen(open===i?null:i)} className="w-full text-left px-5 py-4 flex items-center justify-between text-slate-200">
+              <span>{q}</span>
+              <ChevronRight className={`transition ${open===i?"rotate-90":""}`} />
+            </button>
+            {open===i && (
+              <div className="px-5 pb-5 text-slate-300 text-sm">{a}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Contact({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].contact;
+  return (
+    <section className="max-w-5xl mx-auto px-4 py-12">
+      <h2 className="text-3xl font-bold text-white">{t.h2}</h2>
+      <p className="text-slate-300 mt-2">{t.lead}</p>
+      <div className="mt-6 grid md:grid-cols-2 gap-6">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <h3 className="text-white font-semibold mb-3">{t.direct}</h3>
+          <div className="space-y-3 text-slate-300">
+            <a href={WHATSAPP_URL} target="_blank" className="flex items-center gap-3 rounded-xl px-4 py-3 bg-emerald-500 text-white"><MessageCircle/> WhatsApp: +32 489 20 28 01</a>
+            <a href={EMAIL_URL} className="flex items-center gap-3 rounded-xl px-4 py-3 border border-slate-700 text-slate-100"><Mail/> Email: novagarage.mn@gmail.com</a>
+            <p className="flex items-center gap-3 text-slate-300"><Phone/> +32 489 20 28 01</p>
+            <p className="flex items-center gap-3 text-slate-300"><MapPin/> Halle & environs</p>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <h3 className="text-white font-semibold mb-3">{t.quick}</h3>
+          <form action={EMAIL_URL}>
+            <div className="grid grid-cols-1 gap-3">
+              <input className="rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-slate-100" placeholder={t.name} required/>
+              <input className="rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-slate-100" placeholder={t.phone}/>
+              <select className="rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-slate-100">
+                {t.opts.map((o:string,i:number)=>(<option key={i}>{o}</option>))}
+              </select>
+              <textarea className="rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-slate-100" rows={5} placeholder={t.placeholder}></textarea>
+            </div>
+            <div className="mt-4 flex gap-3">
+              <button type="submit" className="rounded-2xl px-5 py-3 bg-emerald-500 text-white flex items-center gap-2"><Mail size={18}/> {t.send}</button>
+              <a href={WHATSAPP_URL} target="_blank" className="rounded-2xl px-5 py-3 border border-slate-700 text-slate-100 flex items-center gap-2"><MessageCircle size={18}/> {t.wa}</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="mt-8 text-slate-400 text-sm">{t.note}</div>
+    </section>
+  );
+}
+
+function About({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].about;
+  return (
+    <section className="max-w-5xl mx-auto px-4 py-12">
+      <h2 className="text-3xl font-bold text-white">{t.h2}</h2>
+      <p className="text-slate-300 mt-3">{t.p}</p>
+      <ul className="mt-4 grid sm:grid-cols-2 gap-3 text-slate-300">
+        {t.bullets.map((b:string,i:number)=>(<li key={i} className="flex items-center gap-2"><Shield size={18}/> {b}</li>))}
+      </ul>
+      <a href="/NOVA_GARAGE_Tarifs.pdf" className="mt-6 inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-slate-700 text-slate-100"><Info size={18}/> {t.pdf}</a>
+    </section>
+  );
+}
+
+function Gallery({ lang }: { lang: "fr"|"nl"|"en" }) {
+  const t = dict[lang].gallery;
+  return (
+    <section className="max-w-6xl mx-auto px-4 py-12">
+      <h2 className="text-3xl font-bold text-white">{t.h2}</h2>
+      <p className="text-slate-300 mt-2">{t.lead}</p>
+      <div className="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {Array.from({length:6}).map((_,i)=>(
+          <div key={i} className="aspect-video rounded-2xl bg-slate-800 border border-slate-700"></div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  const [route, setRoute] = useState("home");
+  const { lang, setLang } = useI18n();
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <Nav route={route} setRoute={setRoute} lang={lang} setLang={setLang} />
+      {route === "home" && (
+        <>
+          <Hero lang={lang} />
+          <Pricing lang={lang} />
+        </>
+      )}
+      {route === "services" && <Pricing lang={lang} />}
+      {route === "faq" && <FAQ lang={lang} />}
+      {route === "contact" && <Contact lang={lang} />}
+      {route === "about" && <About lang={lang} />}
+      {route === "gallery" && <Gallery lang={lang} />}
+      <Footer lang={lang} />
+    </div>
+  );
+}
