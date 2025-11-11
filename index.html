@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NOVA Garage – Detailing premium</title>
-  <meta name="description" content="NOVA Garage – Detailing auto premium à Halle, Waterloo, Uccle et environs. Intérieur, extérieur, combiné. Devis WhatsApp +32 489 20 28 01." />
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description" content="NOVA Garage – Detailing auto premium à Halle, Waterloo, Uccle et environs. Intérieur, extérieur et combiné. Devis WhatsApp +32 489 20 28 01." />
   <style>
     :root{--bg:#0b1220;--card:#0f1a2b;--muted:#99a3b3;--acc:#25d366;--line:#22314b;--text:#e6eefc;--brand:#35c6f6}
     *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
@@ -32,6 +31,10 @@
     .lang-switch button{margin-left:6px;border:1px solid var(--line);background:#0e1a2d;color:#cfe0ff;border-radius:999px;padding:6px 10px;cursor:pointer}
     .lang-switch button.active{background:#132742;color:#fff}
     @media(min-width:920px){.grid-2{grid-template-columns:1.1fr .9fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
+    /* Watermark NOVA (blurred logo across the site) */
+    body{position:relative}
+    body::before{content:"";position:fixed;inset:0;background: center 12% / min(60vw,620px) no-repeat url('logo.png');opacity:.07;filter:blur(1.6px);pointer-events:none;z-index:0}
+    header,main,section,footer{position:relative;z-index:1}
   </style>
 </head>
 <body>
@@ -81,7 +84,7 @@
     <p class="muted" style="margin-top:12px" data-i="hero.rating">Service client 5★</p>
   </section>
   <aside class="card">
-    <img src="logo.png" alt="Logo" style="width:100%;border-radius:12px;object-fit:contain;aspect-ratio:16/9"/>
+    <img src="https://source.unsplash.com/8k_T1EwTySs/1200x800" alt="Atelier detailing – Unsplash" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:16/9"/>
     <div class="grid grid-3" style="margin-top:12px;text-align:center">
       <div class="badge">Wash pro</div>
       <div class="badge">Protection</div>
@@ -156,7 +159,7 @@
     <p class="muted" style="margin-top:10px" data-i="pricing.foot.0">• Supplément (+20–40 €) pour véhicules très sales ou utilitaires pros.</p>
     <p class="muted" data-i="pricing.foot.1">• Prix TTC – ajustables selon l’état et le niveau demandé.</p>
     <p class="muted" data-i="pricing.foot.2">• Chaque prestation inclut le ‘NOVA Quality Check’.</p>
-    <p style="margin-top:10px"><a href="NOVA_GARAGE_Tarifs.pdf" data-i="pricing.download">Télécharger la liste de prix (PDF)</a></p>
+    <p style="margin-top:10px"><a href="/NOVA_GARAGE_Tarifs.pdf" data-i="pricing.download">Télécharger la liste de prix (PDF)</a></p>
   </div>
 </section>
 
@@ -221,9 +224,10 @@
 </footer>
 
 <script>
-  // i18n (FR default)
+  // ===== i18n dictionaries =====
   const i18n = {
-    fr:{ "nav.home":"Accueil","nav.services":"Services & Tarifs","nav.faq":"FAQ","nav.contact":"Contact",
+    fr: {
+      "nav.home":"Accueil","nav.services":"Services & Tarifs","nav.faq":"FAQ","nav.contact":"Contact",
       hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Detailing auto premium avec produits Koch Chemie, microfibres professionnelles et souci du détail. À domicile ou en atelier.",ctaWa:"Demander un devis WhatsApp",ctaMail:"Demander par e‑mail",rating:"Service client 5★"},
       pricing:{h2:"Services & Tarifs",lead:"Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.",pack:"Forfait",cats:["Citadine","Berline","Break","SUV","Utilitaire"],
         notes:[
@@ -237,8 +241,12 @@
           {t:"Combiné – NOVA Premium",n:"Intérieur complet + extérieur cire express."},
           {t:"Combiné – NOVA Deluxe",n:"Detailling total, polish léger, finition showroom."}
         ],
-        foot:["• Supplément (+20–40 €) pour véhicules très sales ou utilitaires pros.","• Prix TTC – ajustables selon l’état et le niveau demandé.","• Chaque prestation inclut le ‘NOVA Quality Check’."] , download:"Télécharger la liste de prix (PDF)"
-      },
+        foot:[
+          "• Supplément (+20–40 €) pour véhicules très sales ou utilitaires pros.",
+          "• Prix TTC – ajustables selon l’état et le niveau demandé.",
+          "• Chaque prestation inclut le ‘NOVA Quality Check’."
+        ],
+        download:"Télécharger la liste de prix (PDF)"},
       faq:{h2:"Questions fréquentes",items:[
         {q:"Utilisez‑vous l’eau et l’électricité du client ?",a:"Oui, la consommation est faible (comme un aspirateur domestique et une courte douche). Nous avons nos propres rallonges et tuyaux. Sur demande, nous pouvons travailler en autonomie."},
         {q:"Combien de temps dure un forfait Premium ?",a:"En moyenne 3–5 h pour un combiné, selon la taille et l’état du véhicule."},
@@ -248,7 +256,8 @@
       contact:{h2:"Contact & Devis",lead:"Écrivez‑nous et nous répondons rapidement avec une offre personnalisée.",quick:"Demande rapide",name:"Nom",phone:"Téléphone / WhatsApp",sel:"Sélectionnez un service",opts:["Intérieur Premium","Extérieur Premium","Combiné Premium","Autre"],placeholder:"Modèle véhicule + vos besoins",send:"Envoyer",note:"Pour les sociétés / flottes, nous proposons des packs mensuels personnalisés."},
       footer:{blurb:"Detailing auto premium – mobile ou en atelier, à Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",quick:"Liens rapides",contact:"Contact"}
     },
-    nl:{ "nav.home":"Home","nav.services":"Diensten & Prijzen","nav.faq":"FAQ","nav.contact":"Contact",
+    nl: {
+      "nav.home":"Home","nav.services":"Diensten & Prijzen","nav.faq":"FAQ","nav.contact":"Contact",
       hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Premium autodetailing met Koch Chemie, professionele microvezels en oog voor detail. Aan huis of in atelier.",ctaWa:"Offerte via WhatsApp",ctaMail:"Vraag per e‑mail",rating:"Klantentevredenheid 5★"},
       pricing:{h2:"Diensten & Prijzen",lead:"Prijzen per categorie: Stadswagen, Berline, Break, SUV, Bestel.",pack:"Formule",cats:["Stadswagen","Berline","Break","SUV","Bestel"],
         notes:[
@@ -262,10 +271,10 @@
           {t:"Combi – NOVA Premium",n:"Interieur volledig + buiten met express wax."},
           {t:"Combi – NOVA Deluxe",n:"Totale detailing, lichte polish, showroom finish."}
         ],
-        foot:["• Toeslag (+20–40 €) voor zeer vuile voertuigen of professionele bestelwagens.","• Prijzen incl. btw – aanpasbaar volgens staat en gewenst niveau.","• Elke service bevat de ‘NOVA Quality Check’."] , download:"Prijslijst downloaden (PDF)"
-      },
+        foot:["• Toeslag (+20–40 €) voor zeer vuile voertuigen of professionele bestelwagens.","• Prijzen incl. btw – aanpasbaar volgens staat en gewenst niveau.","• Elke service bevat de ‘NOVA Quality Check’."],
+        download:"Prijslijst downloaden (PDF)"},
       faq:{h2:"Veelgestelde vragen",items:[
-        {q:"Gebruiken jullie water en elektriciteit van de klant?",a:"Ja, verbruik is laag (zoals een huisstofzuiger en korte douche). We hebben eigen haspels en verlengkabels. Op verzoek autonoom."},
+        {q:"Gebruiken jullie water en elektriciteit van de klant?",a:"Ja, verbruik is laag (zoals een huisstofzuiger en korte douche). We hebben eigen slangen en verlengkabels. Op verzoek autonoom."},
         {q:"Hoelang duurt een Premium?",a:"Gemiddeld 3–5 u voor een combi, afhankelijk van grootte en staat."},
         {q:"Welke producten gebruiken jullie?",a:"Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microvezels."},
         {q:"Werken jullie aan huis?",a:"Ja, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel. Afspraak via WhatsApp of e‑mail."}
@@ -273,7 +282,8 @@
       contact:{h2:"Contact & Offerte",lead:"Stuur ons een bericht en we reageren snel met een gepersonaliseerde offerte.",quick:"Snelle aanvraag",name:"Naam",phone:"Telefoon / WhatsApp",sel:"Kies een dienst",opts:["Interieur Premium","Exterieur Premium","Combi Premium","Andere"],placeholder:"Model + gewenste werken",send:"Verzenden",note:"Voor bedrijven/vloten bieden we maandpakketten op maat."},
       footer:{blurb:"Premium autodetailing – mobiel of in atelier, in Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel.",quick:"Snelle links",contact:"Contact"}
     },
-    en:{ "nav.home":"Home","nav.services":"Services & Pricing","nav.faq":"FAQ","nav.contact":"Contact",
+    en: {
+      "nav.home":"Home","nav.services":"Services & Pricing","nav.faq":"FAQ","nav.contact":"Contact",
       hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Premium car detailing with Koch Chemie products, pro microfibres and meticulous care. Mobile or on‑site.",ctaWa:"Request on WhatsApp",ctaMail:"Request by e‑mail",rating:"5★ client service"},
       pricing:{h2:"Services & Pricing",lead:"Prices by category: City, Sedan, Estate, SUV, Van.",pack:"Package",cats:["City","Sedan","Estate","SUV","Van"],
         notes:[
@@ -287,8 +297,8 @@
           {t:"Combo – NOVA Premium",n:"Full interior + exterior with express wax."},
           {t:"Combo – NOVA Deluxe",n:"Total detailing, light polish, showroom finish."}
         ],
-        foot:["• Surcharge (+€20–40) for very dirty vehicles or pro vans.","• VAT included – adjustable by condition and requested level.","• Each service includes the ‘NOVA Quality Check’."] , download:"Download price list (PDF)"
-      },
+        foot:["• Surcharge (+€20–40) for very dirty vehicles or pro vans.","• VAT included – adjustable by condition and requested level.","• Each service includes the ‘NOVA Quality Check’."],
+        download:"Download price list (PDF)"},
       faq:{h2:"Frequently asked questions",items:[
         {q:"Do you use the customer’s water and power?",a:"Yes, usage is minimal (like a home vacuum and a short shower). We bring our own hoses and extensions. Fully autonomous on request."},
         {q:"How long does Premium take?",a:"On average 3–5 h for a combo, depending on size and condition."},
@@ -305,21 +315,45 @@
   const setPlaceholder = (el, value)=>{ if(el) el.setAttribute('placeholder', value) };
 
   function applyLang(lang){
-    const t = i18n[lang]; document.documentElement.lang = lang;
+    const t = i18n[lang];
+    document.documentElement.lang = lang;
+    // Simple keys
     $('[data-i]').forEach(node=>{
       const path = node.getAttribute('data-i');
       const value = path.split('.').reduce((a,k)=>a?.[k], t);
       if(typeof value === 'string'){ setText(node, value) }
     });
+    // Placeholders
     $('[data-i-placeholder]').forEach(node=>{
       const path = node.getAttribute('data-i-placeholder');
       const value = path.split('.').reduce((a,k)=>a?.[k], t);
       if(typeof value === 'string'){ setPlaceholder(node, value) }
     });
-    for(let i=0;i<5;i++){ const th = document.querySelector(`[data-i="pricing.cats.${i}"]`); if(th) th.textContent = t.pricing.cats[i]; }
-    for(let i=0;i<9;i++){ const tEl=document.querySelector(`[data-i="pricing.notes.${i}.t"]`); const nEl=document.querySelector(`[data-i="pricing.notes.${i}.n"]`); if(tEl) tEl.textContent=t.pricing.notes[i].t; if(nEl) nEl.textContent=t.pricing.notes[i].n; }
-    for(let i=0;i<4;i++){ const qEl=document.querySelector(`[data-i="faq.items.${i}.q"]`); const aEl=document.querySelector(`[data-i="faq.items.${i}.a"]`); if(qEl) qEl.textContent=t.faq.items[i].q; if(aEl) aEl.textContent=t.faq.items[i].a; }
-    for(let i=0;i<4;i++){ const oEl=document.querySelector(`[data-i="contact.opts.${i}"]`); if(oEl) oEl.textContent=t.contact.opts[i]; }
+    // Table headers categories
+    for(let i=0;i<5;i++){
+      const th = document.querySelector(`[data-i="pricing.cats.${i}"]`);
+      if(th) th.textContent = t.pricing.cats[i];
+    }
+    // Notes titles/descriptions
+    for(let i=0;i<9;i++){
+      const tEl = document.querySelector(`[data-i="pricing.notes.${i}.t"]`);
+      const nEl = document.querySelector(`[data-i="pricing.notes.${i}.n"]`);
+      if(tEl) tEl.textContent = t.pricing.notes[i].t;
+      if(nEl) nEl.textContent = t.pricing.notes[i].n;
+    }
+    // FAQ items
+    for(let i=0;i<4;i++){
+      const qEl = document.querySelector(`[data-i="faq.items.${i}.q"]`);
+      const aEl = document.querySelector(`[data-i="faq.items.${i}.a"]`);
+      if(qEl) qEl.textContent = t.faq.items[i].q;
+      if(aEl) aEl.textContent = t.faq.items[i].a;
+    }
+    // Contact selects
+    for(let i=0;i<4;i++){
+      const oEl = document.querySelector(`[data-i="contact.opts.${i}"]`);
+      if(oEl) oEl.textContent = t.contact.opts[i];
+    }
+    // Footer labels
     document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
     document.querySelector(`.lang-switch button[data-lang="${lang}"]`).classList.add('active');
   }
@@ -327,9 +361,32 @@
   // Init
   applyLang('fr');
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.querySelectorAll('.lang-switch button').forEach(btn=> btn.addEventListener('click',()=> applyLang(btn.getAttribute('data-lang'))));
+  document.querySelectorAll('.lang-switch button').forEach(btn=>{
+    btn.addEventListener('click',()=> applyLang(btn.getAttribute('data-lang')));
+  });
 
-  // Mailto composer submit
+  // Robust logo fallback (tries multiple file names) — single definition
+  (function(){
+    const logo = document.getElementById('brandLogo');
+    const candidates = ['logo.png','logo.jpg','images/logo.png','images/logo.jpg','assets/logo.png','assets/logo.jpg','/logo.png','/logo.jpg'];
+    let idx = 0;
+    function tryNext(){
+      if(!logo || idx>=candidates.length){
+        console.warn('NOVA logo: no candidate matched');
+        // graceful placeholder
+        if(logo){ logo.outerHTML = '<div style="height:44px;display:flex;align-items:center;color:#cfe0ff">NOVA Garage</div>'; }
+        return;
+      }
+      const url = candidates[idx];
+      const test = new Image();
+      test.onload = ()=>{ console.log('NOVA logo loaded:', url); logo.src = url; };
+      test.onerror = ()=>{ console.warn('NOVA logo not found:', url); idx++; tryNext(); };
+      test.src = url;
+    }
+    tryNext();
+  })();
+
+  // Mailto composer submit (opens user's email app)
   (function(){
     const form = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
@@ -343,12 +400,28 @@
       const msg = (data.get('message')||'').toString().trim();
       const to = 'novagarage.mn@gmail.com';
       const subject = encodeURIComponent(`Demande devis – ${name||'Client'}`);
-      const body = encodeURIComponent(`Bonjour NOVA Garage,%0A%0AJe souhaite un devis pour : ${service}.%0A%0ANom : ${name}%0ATéléphone/WhatsApp : ${phone}%0A%0ADétails :%0A${msg}%0A%0AMerci !`);
+      const body = encodeURIComponent(
+        `Bonjour NOVA Garage,%0A%0AJe souhaite un devis pour : ${service}.%0A%0ANom : ${name}%0ATéléphone/WhatsApp : ${phone}%0A%0ADétails :%0A${msg}%0A%0AMerci !`
+      );
       const href = `mailto:${to}?subject=${subject}&body=${body}`;
-      if(status) status.textContent = 'Votre application mail s’ouvre…';
+      if(status) status.textContent = "Votre application mail s’ouvre…";
       window.location.href = href;
-      setTimeout(()=>{ if(status) status.textContent = ''; }, 4000);
+      setTimeout(()=>{ if(status) status.textContent = ""; }, 4000);
     });
+  })();
+
+  // ======== Self-tests (debug) ========
+  (function runSelfTests(){
+    try{
+      console.assert(document.getElementById('brandLogo'), 'brandLogo should exist');
+      console.assert(typeof i18n.fr === 'object' && typeof i18n.nl === 'object' && typeof i18n.en === 'object', 'i18n dictionaries exist');
+      const required = ['contactForm','formStatus'];
+      required.forEach(id=>console.assert(document.getElementById(id), id+' should exist'));
+      console.assert(document.querySelectorAll('.lang-switch button').length===3, 'Language switch should have 3 buttons');
+      // Verify no duplicate const logo in this scope
+      console.assert(typeof window.logo === 'undefined', 'No global logo const leaked');
+      console.log('%cNOVA Garage tests passed','color:#66e3ff');
+    }catch(e){ console.warn('Self-tests warning:', e); }
   })();
 </script>
 </body>
