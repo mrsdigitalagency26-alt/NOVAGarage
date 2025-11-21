@@ -5,45 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NOVA Garage – Detailing premium</title>
   <meta name="description" content="NOVA Garage – Detailing auto premium à Halle, Waterloo, Uccle et environs. Intérieur, extérieur, combiné. Devis WhatsApp +32 489 20 28 01." />
-  <link rel="icon" type="image/png" href="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop">
+  <!-- Favicon simplu: Lamborghini -->
+  <link rel="icon" type="image/jpeg" href="https://commons.wikimedia.org/wiki/Special:FilePath/2022_Lamborghini_Huracan_STO_Front.jpg?width=64">
   <style>
     :root{
       --bg:#0b1220;--card:#0f1a2b;--muted:#99a3b3;
       --acc:#25d366;--line:#22314b;--text:#e6eefc;--brand:#35c6f6
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
-      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    html,body{
+      margin:0;padding:0;background:var(--bg);color:var(--text);
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    }
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 16px}
-    header{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.9);
-      backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid var(--line)}
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(11,18,32,.9);
+      backdrop-filter:saturate(140%) blur(6px);
+      border-bottom:1px solid var(--line);
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
     .nav .links a{margin:0 10px;color:#cfe0ff}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--acc);
-      color:#042e11;border:0;border-radius:999px;padding:10px 16px;font-weight:600;cursor:pointer}
-    .btn.outline{background:transparent;color:var(--text);border:1px solid var(--line)}
-    .badge{display:inline-block;border:1px solid var(--line);color:#cfe0ff;
-      border-radius:999px;padding:4px 10px;font-size:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--acc);color:#042e11;border:0;
+      border-radius:999px;padding:10px 16px;font-weight:600;
+      cursor:pointer;
+    }
+    .btn.outline{
+      background:transparent;color:var(--text);border:1px solid var(--line)
+    }
+    .badge{
+      display:inline-block;border:1px solid var(--line);color:#cfe0ff;
+      border-radius:999px;padding:4px 10px;font-size:12px
+    }
     .grid{display:grid;gap:24px}
-    .hero{padding:56px 0;background:radial-gradient(1200px 400px at 60% -10%,#133058 0%,rgba(19,48,88,0) 60%)}
+    .hero{
+      padding:56px 0;
+      background:radial-gradient(1200px 400px at 60% -10%,#133058 0%,rgba(19,48,88,0) 60%);
+    }
     .hero h1{font-size:42px;line-height:1.15;margin:0 0 8px}
     .hero .sub{color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+    .card{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:20px;padding:20px;
+    }
     h2{font-size:28px;margin:8px 0 12px}
     table{width:100%;border-collapse:collapse}
     th,td{padding:12px;border-top:1px solid var(--line);text-align:center}
     thead th{background:#12233b}
     td:first-child,th:first-child{text-align:left}
     .muted{color:var(--muted)}
-    footer{margin-top:48px;border-top:1px solid var(--line);background:#0c1729;padding:28px 0}
-    .lang-switch button{margin-left:6px;border:1px solid var(--line);background:#0e1a2d;
-      color:#cfe0ff;border-radius:999px;padding:6px 10px;cursor:pointer}
+    footer{
+      margin-top:48px;border-top:1px solid var(--line);
+      background:#0c1729;padding:28px 0;
+    }
+    .lang-switch button{
+      margin-left:6px;border:1px solid var(--line);background:#0e1a2d;
+      color:#cfe0ff;border-radius:999px;padding:6px 10px;cursor:pointer;
+    }
     .lang-switch button.active{background:#132742;color:#fff}
     @media(min-width:920px){
       .grid-2{grid-template-columns:1.1fr .9fr}
       .grid-3{grid-template-columns:repeat(3,1fr)}
+    }
+    /* Stil text ca logo NOVA GARAGE */
+    .nova-title{
+      font-family:"Impact","Anton",system-ui,sans-serif;
+      font-weight:900;
+      font-size:24px;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      color:#d9ebff;
+      text-shadow:
+        -2px -2px 0 #061222,
+         2px -2px 0 #061222,
+        -2px  2px 0 #061222,
+         2px  2px 0 #061222,
+         0   0 8px rgba(0,140,255,0.6);
+    }
+    .nova-title::first-letter{
+      color:#66e3ff;
     }
   </style>
 </head>
@@ -51,10 +95,8 @@
 <header>
   <div class="container nav">
     <div style="display:flex;align-items:center;gap:12px">
-      <!-- Logo generic care se încarcă sigur -->
-      <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop"
-           alt="Logo NOVA Garage" style="height:44px;width:44px;border-radius:8px;object-fit:cover"/>
-      <strong>NOVA Garage</strong>
+      <!-- Logo doar ca text, stil ca în siglă -->
+      <span class="nova-title">NOVA GARAGE</span>
     </div>
     <nav class="links">
       <a href="#home" data-i="nav.home">Accueil</a>
@@ -74,8 +116,10 @@
 
 <main id="home" class="container hero grid grid-2">
   <section>
-    <h1><span data-i="hero.titleA">Not only clean —</span>
-        <span style="color:#66e3ff" data-i="hero.titleB">NOVA clean.</span></h1>
+    <h1>
+      <span data-i="hero.titleA">Not only clean —</span>
+      <span style="color:#66e3ff" data-i="hero.titleB">NOVA clean.</span>
+    </h1>
     <p class="sub" data-i="hero.subtitle">
       Detailing auto premium avec produits Koch Chemie, microfibres professionnelles et souci du détail.
       À domicile ou en atelier.
@@ -85,23 +129,33 @@
       <div class="grid grid-3" style="gap:12px">
         <div class="card" style="text-align:center">
           <div style="font-weight:700">Intérieur Premium</div>
-          <div class="muted" style="font-size:14px">Injection-extraction Puzzi 8/1, soin cuir/textile.</div>
+          <div class="muted" style="font-size:14px">
+            Injection-extraction Puzzi 8/1, soin cuir/textile.
+          </div>
         </div>
         <div class="card" style="text-align:center">
           <div style="font-weight:700">Extérieur Premium</div>
-          <div class="muted" style="font-size:14px">Prélavage, 2 seaux, décontamination, ProtectorWax.</div>
+          <div class="muted" style="font-size:14px">
+            Prélavage, 2 seaux, décontamination, ProtectorWax.
+          </div>
         </div>
         <div class="card" style="text-align:center">
           <div style="font-weight:700">Combiné</div>
-          <div class="muted" style="font-size:14px">Intérieur complet + extérieur avec finition showroom.</div>
+          <div class="muted" style="font-size:14px">
+            Intérieur complet + extérieur avec finition showroom.
+          </div>
         </div>
       </div>
     </div>
     <p style="margin:16px 0 0">
-      <a class="btn" target="_blank" href="https://wa.me/32489202801" data-i="hero.ctaWa">Demander un devis WhatsApp</a>
+      <a class="btn" target="_blank" href="https://wa.me/32489202801" data-i="hero.ctaWa">
+        Demander un devis WhatsApp
+      </a>
       <a class="btn outline"
          href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage&body=Bonjour%20NOVA%20Garage,%0AJe%20souhaite%20un%20devis%20pour:%20"
-         data-i="hero.ctaMail">Demander par e-mail</a>
+         data-i="hero.ctaMail">
+        Demander par e-mail
+      </a>
     </p>
     <div class="grid grid-3" style="margin-top:14px">
       <div class="badge">Assuré & professionnel</div>
@@ -112,10 +166,10 @@
   </section>
 
   <aside class="card">
-    <!-- Imagine de detailing stabilă, de pe Pexels (NU trebuie încărcată de tine) -->
+    <!-- Lamborghini care se încarcă sigur (Wikimedia) -->
     <img
-      src="https://images.pexels.com/photos/4870709/pexels-photo-4870709.jpeg?auto=compress&cs=tinysrgb&w=1200"
-      alt="Atelier detailing"
+      src="https://commons.wikimedia.org/wiki/Special:FilePath/2022_Lamborghini_Huracan_STO_Front.jpg?width=1200"
+      alt="Lamborghini – NOVA Garage"
       style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:16/9"
     />
     <div class="grid grid-3" style="margin-top:12px;text-align:center">
@@ -126,8 +180,11 @@
     <div class="card" style="margin-top:12px">
       <div style="font-weight:700;margin-bottom:6px">Réservation rapide</div>
       <div class="grid" style="gap:8px">
-        <a class="btn" target="_blank" href="https://wa.me/32489202801">WhatsApp: +32 489 20 28 01</a>
-        <a class="btn outline" href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
+        <a class="btn" target="_blank" href="https://wa.me/32489202801">
+          WhatsApp: +32 489 20 28 01
+        </a>
+        <a class="btn outline"
+           href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
           Email: novagarage.mn@gmail.com
         </a>
       </div>
@@ -138,7 +195,9 @@
 <section id="pricing" class="container">
   <div class="card">
     <h2 data-i="pricing.h2">Services & Tarifs</h2>
-    <p class="muted" data-i="pricing.lead">Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.</p>
+    <p class="muted" data-i="pricing.lead">
+      Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.
+    </p>
     <div style="overflow:auto;margin-top:12px">
       <table>
         <thead>
@@ -154,55 +213,73 @@
         <tbody>
           <tr>
             <td><strong data-i="pricing.notes.0.t">Intérieur – NOVA Standard</strong>
-              <div class="muted" data-i="pricing.notes.0.n">Aspiration, plastiques, vitres, désodorisation.</div>
+              <div class="muted" data-i="pricing.notes.0.n">
+                Aspiration, plastiques, vitres, désodorisation.
+              </div>
             </td>
             <td>80 €</td><td>90 €</td><td>100 €</td><td>110 €</td><td>130 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.1.t">Intérieur – NOVA Premium</strong>
-              <div class="muted" data-i="pricing.notes.1.n">Puzzi 8/1, Pol Star / Green Star, soin cuir/textile.</div>
+              <div class="muted" data-i="pricing.notes.1.n">
+                Puzzi 8/1, Pol Star / Green Star, soin cuir/textile.
+              </div>
             </td>
             <td>120 €</td><td>140 €</td><td>150 €</td><td>160 €</td><td>190 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.2.t">Intérieur – NOVA Deluxe</strong>
-              <div class="muted" data-i="pricing.notes.2.n">Detailling complet, vapeur, protection UV, finitions.</div>
+              <div class="muted" data-i="pricing.notes.2.n">
+                Detailling complet, vapeur, protection UV, finitions.
+              </div>
             </td>
             <td>160 €</td><td>180 €</td><td>200 €</td><td>220 €</td><td>250 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.3.t">Extérieur – NOVA Standard</strong>
-              <div class="muted" data-i="pricing.notes.3.n">Prélavage, lavage manuel, jantes rapide, séchage.</div>
+              <div class="muted" data-i="pricing.notes.3.n">
+                Prélavage, lavage manuel, jantes rapide, séchage.
+              </div>
             </td>
             <td>60 €</td><td>70 €</td><td>80 €</td><td>90 €</td><td>110 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.4.t">Extérieur – NOVA Premium</strong>
-              <div class="muted" data-i="pricing.notes.4.n">Mousse active, décontamination, ProtectorWax.</div>
+              <div class="muted" data-i="pricing.notes.4.n">
+                Mousse active, décontamination, ProtectorWax.
+              </div>
             </td>
             <td>100 €</td><td>120 €</td><td>130 €</td><td>140 €</td><td>170 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.5.t">Extérieur – NOVA Deluxe</strong>
-              <div class="muted" data-i="pricing.notes.5.n">Polish léger, cire premium, vitres hydrophobes.</div>
+              <div class="muted" data-i="pricing.notes.5.n">
+                Polish léger, cire premium, vitres hydrophobes.
+              </div>
             </td>
             <td>150 €</td><td>170 €</td><td>190 €</td><td>210 €</td><td>250 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.6.t">Combiné – NOVA Standard</strong>
-              <div class="muted" data-i="pricing.notes.6.n">Intérieur standard + extérieur manuel.</div>
+              <div class="muted" data-i="pricing.notes.6.n">
+                Intérieur standard + extérieur manuel.
+              </div>
             </td>
             <td>120 €</td><td>140 €</td><td>150 €</td><td>160 €</td><td>180 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.7.t">Combiné – NOVA Premium</strong>
-              <div class="muted" data-i="pricing.notes.7.n">Intérieur complet + extérieur cire express.</div>
+              <div class="muted" data-i="pricing.notes.7.n">
+                Intérieur complet + extérieur cire express.
+              </div>
             </td>
             <td>180 €</td><td>200 €</td><td>220 €</td><td>240 €</td><td>280 €</td>
           </tr>
           <tr>
             <td><strong data-i="pricing.notes.8.t">Combiné – NOVA Deluxe</strong>
-              <div class="muted" data-i="pricing.notes.8.n">Detailling total, polish léger, finition showroom.</div>
+              <div class="muted" data-i="pricing.notes.8.n">
+                Detailling total, polish léger, finition showroom.
+              </div>
             </td>
             <td>250 €</td><td>280 €</td><td>300 €</td><td>330 €</td><td>380 €</td>
           </tr>
@@ -219,7 +296,9 @@
       • Chaque prestation inclut le ‘NOVA Quality Check’.
     </p>
     <p style="margin-top:10px">
-      <a href="NOVA_GARAGE_Tarifs.pdf" data-i="pricing.download">Télécharger la liste de prix (PDF)</a>
+      <a href="NOVA_GARAGE_Tarifs.pdf" data-i="pricing.download">
+        Télécharger la liste de prix (PDF)
+      </a>
     </p>
   </div>
 </section>
@@ -228,29 +307,38 @@
   <div class="card">
     <h2 data-i="faq.h2">Questions fréquentes</h2>
     <details open class="card" style="margin:8px 0">
-      <summary><strong data-i="faq.items.0.q">Utilisez-vous l’eau et l’électricité du client ?</strong></summary>
+      <summary><strong data-i="faq.items.0.q">
+        Utilisez-vous l’eau et l’électricité du client ?
+      </strong></summary>
       <p class="muted" data-i="faq.items.0.a">
         Oui, la consommation est faible (comme un aspirateur domestique et une courte douche).
         Nous avons nos propres rallonges et tuyaux. Sur demande, nous pouvons travailler en autonomie.
       </p>
     </details>
     <details class="card" style="margin:8px 0">
-      <summary><strong data-i="faq.items.1.q">Combien de temps dure un forfait Premium ?</strong></summary>
+      <summary><strong data-i="faq.items.1.q">
+        Combien de temps dure un forfait Premium ?
+      </strong></summary>
       <p class="muted" data-i="faq.items.1.a">
         En moyenne 3–5 h pour un combiné, selon la taille et l’état du véhicule.
       </p>
     </details>
     <details class="card" style="margin:8px 0">
-      <summary><strong data-i="faq.items.2.q">Quels produits utilisez-vous ?</strong></summary>
+      <summary><strong data-i="faq.items.2.q">
+        Quels produits utilisez-vous ?
+      </strong></summary>
       <p class="muted" data-i="faq.items.2.a">
-        Koch Chemie : Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner,
-        Speed Glass Cleaner ; microfibres CROP.
+        Koch Chemie : Green Star, Pol Star, Leather Star, ProtectorWax,
+        Magic Wheel Cleaner, Speed Glass Cleaner ; microfibres CROP.
       </p>
     </details>
     <details class="card" style="margin:8px 0">
-      <summary><strong data-i="faq.items.3.q">Intervenez-vous à domicile ?</strong></summary>
+      <summary><strong data-i="faq.items.3.q">
+        Intervenez-vous à domicile ?
+      </strong></summary>
       <p class="muted" data-i="faq.items.3.a">
-        Oui, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. RDV par WhatsApp ou e-mail.
+        Oui, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.
+        RDV par WhatsApp ou e-mail.
       </p>
     </details>
   </div>
@@ -278,18 +366,18 @@
       <form id="contactForm" name="contact">
         <label><span data-i="contact.name">Nom</span><br>
           <input name="name" required
-                 style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);
-                        background:#0e1a2d;color:#fff">
+                 style="width:100%;padding:10px;border-radius:10px;
+                        border:1px solid var(--line);background:#0e1a2d;color:#fff">
         </label><br><br>
         <label><span data-i="contact.phone">Téléphone / WhatsApp</span><br>
           <input name="phone"
-                 style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);
-                        background:#0e1a2d;color:#fff">
+                 style="width:100%;padding:10px;border-radius:10px;
+                        border:1px solid var(--line);background:#0e1a2d;color:#fff">
         </label><br><br>
         <label><span data-i="contact.sel">Sélectionnez un service</span><br>
           <select name="service"
-                  style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);
-                         background:#0e1a2d;color:#fff">
+                  style="width:100%;padding:10px;border-radius:10px;
+                         border:1px solid var(--line);background:#0e1a2d;color:#fff">
             <option data-i="contact.opts.0">Intérieur Premium</option>
             <option data-i="contact.opts.1">Extérieur Premium</option>
             <option data-i="contact.opts.2">Combiné Premium</option>
@@ -300,8 +388,8 @@
           <textarea name="message" rows="5"
                     placeholder="Modèle véhicule + vos besoins"
                     data-i-placeholder="contact.placeholder"
-                    style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);
-                           background:#0e1a2d;color:#fff"></textarea>
+                    style="width:100%;padding:10px;border-radius:10px;
+                           border:1px solid var(--line);background:#0e1a2d;color:#fff"></textarea>
         </label><br><br>
         <button class="btn" type="submit" data-i="contact.send">Envoyer</button>
         <span id="formStatus" class="muted" style="margin-left:10px"></span>
@@ -346,9 +434,20 @@
 
 <script>
   const i18n = {
-    fr:{ "nav.home":"Accueil","nav.services":"Services & Tarifs","nav.faq":"FAQ","nav.contact":"Contact",
-      hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Detailing auto premium avec produits Koch Chemie, microfibres professionnelles et souci du détail. À domicile ou en atelier.",ctaWa:"Demander un devis WhatsApp",ctaMail:"Demander par e-mail",rating:"Service client 5★"},
-      pricing:{h2:"Services & Tarifs",lead:"Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.",pack:"Forfait",
+    fr:{
+      "nav.home":"Accueil","nav.services":"Services & Tarifs","nav.faq":"FAQ","nav.contact":"Contact",
+      hero:{
+        titleA:"Not only clean —",
+        titleB:"NOVA clean.",
+        subtitle:"Detailing auto premium avec produits Koch Chemie, microfibres professionnelles et souci du détail. À domicile ou en atelier.",
+        ctaWa:"Demander un devis WhatsApp",
+        ctaMail:"Demander par e-mail",
+        rating:"Service client 5★"
+      },
+      pricing:{
+        h2:"Services & Tarifs",
+        lead:"Tarifs par catégorie : Citadine, Berline, Break, SUV, Utilitaire.",
+        pack:"Forfait",
         cats:["Citadine","Berline","Break","SUV","Utilitaire"],
         notes:[
           {t:"Intérieur – NOVA Standard",n:"Aspiration, plastiques, vitres, désodorisation."},
@@ -368,22 +467,59 @@
         ],
         download:"Télécharger la liste de prix (PDF)"
       },
-      faq:{h2:"Questions fréquentes",items:[
-        {q:"Utilisez-vous l’eau et l’électricité du client ?",a:"Oui, la consommation est faible (comme un aspirateur domestique et une courte douche). Nous avons nos propres rallonges et tuyaux. Sur demande, nous pouvons travailler en autonomie."},
-        {q:"Combien de temps dure un forfait Premium ?",a:"En moyenne 3–5 h pour un combiné, selon la taille et l’état du véhicule."},
-        {q:"Quels produits utilisez-vous ?",a:"Koch Chemie : Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner ; microfibres CROP."},
-        {q:"Intervenez-vous à domicile ?",a:"Oui, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. RDV par WhatsApp ou e-mail."}
-      ]},
-      contact:{h2:"Contact & Devis",lead:"Écrivez-nous et nous répondons rapidement avec une offre personnalisée.",quick:"Demande rapide",
-        name:"Nom",phone:"Téléphone / WhatsApp",sel:"Sélectionnez un service",
+      faq:{
+        h2:"Questions fréquentes",
+        items:[
+          {
+            q:"Utilisez-vous l’eau et l’électricité du client ?",
+            a:"Oui, la consommation est faible (comme un aspirateur domestique et une courte douche). Nous avons nos propres rallonges et tuyaux. Sur demande, nous pouvons travailler en autonomie."
+          },
+          {
+            q:"Combien de temps dure un forfait Premium ?",
+            a:"En moyenne 3–5 h pour un combiné, selon la taille et l’état du véhicule."
+          },
+          {
+            q:"Quels produits utilisez-vous ?",
+            a:"Koch Chemie : Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner ; microfibres CROP."
+          },
+          {
+            q:"Intervenez-vous à domicile ?",
+            a:"Oui, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. RDV par WhatsApp ou e-mail."
+          }
+        ]
+      },
+      contact:{
+        h2:"Contact & Devis",
+        lead:"Écrivez-nous et nous répondons rapidement avec une offre personnalisée.",
+        quick:"Demande rapide",
+        name:"Nom",
+        phone:"Téléphone / WhatsApp",
+        sel:"Sélectionnez un service",
         opts:["Intérieur Premium","Extérieur Premium","Combiné Premium","Autre"],
-        placeholder:"Modèle véhicule + vos besoins",send:"Envoyer",
-        note:"Pour les sociétés / flottes, nous proposons des packs mensuels personnalisés."},
-      footer:{blurb:"Detailing auto premium – mobile ou en atelier, à Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",quick:"Liens rapides",contact:"Contact"}
+        placeholder:"Modèle véhicule + vos besoins",
+        send:"Envoyer",
+        note:"Pour les sociétés / flottes, nous proposons des packs mensuels personnalisés."
+      },
+      footer:{
+        blurb:"Detailing auto premium – mobile ou en atelier, à Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",
+        quick:"Liens rapides",
+        contact:"Contact"
+      }
     },
-    nl:{ "nav.home":"Home","nav.services":"Diensten & Prijzen","nav.faq":"FAQ","nav.contact":"Contact",
-      hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Premium autodetailing met Koch Chemie, professionele microvezels en oog voor detail. Aan huis of in atelier.",ctaWa:"Offerte via WhatsApp",ctaMail:"Vraag per e-mail",rating:"Klantentevredenheid 5★"},
-      pricing:{h2:"Diensten & Prijzen",lead:"Prijzen per categorie: Stadswagen, Berline, Break, SUV, Bestel.",pack:"Formule",
+    nl:{
+      "nav.home":"Home","nav.services":"Diensten & Prijzen","nav.faq":"FAQ","nav.contact":"Contact",
+      hero:{
+        titleA:"Not only clean —",
+        titleB:"NOVA clean.",
+        subtitle:"Premium autodetailing met Koch Chemie, professionele microvezels en oog voor detail. Aan huis of in atelier.",
+        ctaWa:"Offerte via WhatsApp",
+        ctaMail:"Vraag per e-mail",
+        rating:"Klantentevredenheid 5★"
+      },
+      pricing:{
+        h2:"Diensten & Prijzen",
+        lead:"Prijzen per categorie: Stadswagen, Berline, Break, SUV, Bestel.",
+        pack:"Formule",
         cats:["Stadswagen","Berline","Break","SUV","Bestel"],
         notes:[
           {t:"Interieur – NOVA Standard",n:"Stofzuigen, kunststoffen, ramen, geurverfrissing."},
@@ -403,22 +539,59 @@
         ],
         download:"Prijslijst downloaden (PDF)"
       },
-      faq:{h2:"Veelgestelde vragen",items:[
-        {q:"Gebruiken jullie water en elektriciteit van de klant?",a:"Ja, verbruik is laag (zoals een huisstofzuiger en korte douche). We hebben eigen haspels en verlengkabels. Op verzoek autonoom."},
-        {q:"Hoelang duurt een Premium?",a:"Gemiddeld 3–5 u voor een combi, afhankelijk van grootte en staat."},
-        {q:"Welke producten gebruiken jullie?",a:"Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microvezels."},
-        {q:"Werken jullie aan huis?",a:"Ja, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel. Afspraak via WhatsApp of e-mail."}
-      ]},
-      contact:{h2:"Contact & Offerte",lead:"Stuur ons een bericht en we reageren snel met een gepersonaliseerde offerte.",quick:"Snelle aanvraag",
-        name:"Naam",phone:"Telefoon / WhatsApp",sel:"Kies een dienst",
+      faq:{
+        h2:"Veelgestelde vragen",
+        items:[
+          {
+            q:"Gebruiken jullie water en elektriciteit van de klant?",
+            a:"Ja, verbruik is laag (zoals een huisstofzuiger en korte douche). We hebben eigen haspels en verlengkabels. Op verzoek autonoom."
+          },
+          {
+            q:"Hoelang duurt een Premium?",
+            a:"Gemiddeld 3–5 u voor een combi, afhankelijk van grootte en staat."
+          },
+          {
+            q:"Welke producten gebruiken jullie?",
+            a:"Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microvezels."
+          },
+          {
+            q:"Werken jullie aan huis?",
+            a:"Ja, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel. Afspraak via WhatsApp of e-mail."
+          }
+        ]
+      },
+      contact:{
+        h2:"Contact & Offerte",
+        lead:"Stuur ons een bericht en we reageren snel met een gepersonaliseerde offerte.",
+        quick:"Snelle aanvraag",
+        name:"Naam",
+        phone:"Telefoon / WhatsApp",
+        sel:"Kies een dienst",
         opts:["Interieur Premium","Exterieur Premium","Combi Premium","Andere"],
-        placeholder:"Model + gewenste werken",send:"Verzenden",
-        note:"Voor bedrijven/vloten bieden we maandpakketten op maat."},
-      footer:{blurb:"Premium autodetailing – mobiel of in atelier, in Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel.",quick:"Snelle links",contact:"Contact"}
+        placeholder:"Model + gewenste werken",
+        send:"Verzenden",
+        note:"Voor bedrijven/vloten bieden we maandpakketten op maat."
+      },
+      footer:{
+        blurb:"Premium autodetailing – mobiel of in atelier, in Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Ukkel.",
+        quick:"Snelle links",
+        contact:"Contact"
+      }
     },
-    en:{ "nav.home":"Home","nav.services":"Services & Pricing","nav.faq":"FAQ","nav.contact":"Contact",
-      hero:{titleA:"Not only clean —",titleB:"NOVA clean.",subtitle:"Premium car detailing with Koch Chemie products, pro microfibres and meticulous care. Mobile or on-site.",ctaWa:"Request on WhatsApp",ctaMail:"Request by e-mail",rating:"5★ client service"},
-      pricing:{h2:"Services & Pricing",lead:"Prices by category: City, Sedan, Estate, SUV, Van.",pack:"Package",
+    en:{
+      "nav.home":"Home","nav.services":"Services & Pricing","nav.faq":"FAQ","nav.contact":"Contact",
+      hero:{
+        titleA:"Not only clean —",
+        titleB:"NOVA clean.",
+        subtitle:"Premium car detailing with Koch Chemie products, pro microfibres and meticulous care. Mobile or on-site.",
+        ctaWa:"Request on WhatsApp",
+        ctaMail:"Request by e-mail",
+        rating:"5★ client service"
+      },
+      pricing:{
+        h2:"Services & Pricing",
+        lead:"Prices by category: City, Sedan, Estate, SUV, Van.",
+        pack:"Package",
         cats:["City","Sedan","Estate","SUV","Van"],
         notes:[
           {t:"Interior – NOVA Standard",n:"Vacuum, plastics, windows, deodorise."},
@@ -438,18 +611,44 @@
         ],
         download:"Download price list (PDF)"
       },
-      faq:{h2:"Frequently asked questions",items:[
-        {q:"Do you use the customer’s water and power?",a:"Yes, usage is minimal (like a home vacuum and a short shower). We bring our own hoses and extensions. Fully autonomous on request."},
-        {q:"How long does Premium take?",a:"On average 3–5 h for a combo, depending on size and condition."},
-        {q:"Which products do you use?",a:"Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microfibres."},
-        {q:"Do you come to my place?",a:"Yes, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. Book via WhatsApp or e-mail."}
-      ]},
-      contact:{h2:"Contact & Quote",lead:"Send us a message and we’ll reply quickly with a tailored quote.",quick:"Quick request",
-        name:"Name",phone:"Phone / WhatsApp",sel:"Select a service",
+      faq:{
+        h2:"Frequently asked questions",
+        items:[
+          {
+            q:"Do you use the customer’s water and power?",
+            a:"Yes, usage is minimal (like a home vacuum and a short shower). We bring our own hoses and extensions. Fully autonomous on request."
+          },
+          {
+            q:"How long does Premium take?",
+            a:"On average 3–5 h for a combo, depending on size and condition."
+          },
+          {
+            q:"Which products do you use?",
+            a:"Koch Chemie: Green Star, Pol Star, Leather Star, ProtectorWax, Magic Wheel Cleaner, Speed Glass Cleaner; CROP microfibres."
+          },
+          {
+            q:"Do you come to my place?",
+            a:"Yes, Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle. Book via WhatsApp or e-mail."
+          }
+        ]
+      },
+      contact:{
+        h2:"Contact & Quote",
+        lead:"Send us a message and we’ll reply quickly with a tailored quote.",
+        quick:"Quick request",
+        name:"Name",
+        phone:"Phone / WhatsApp",
+        sel:"Select a service",
         opts:["Interior Premium","Exterior Premium","Full Premium","Other"],
-        placeholder:"Car model + your needs",send:"Send",
-        note:"For companies/fleets we offer monthly custom packages."},
-      footer:{blurb:"Premium mobile/on-site detailing across Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",quick:"Quick links",contact:"Contact"}
+        placeholder:"Car model + your needs",
+        send:"Send",
+        note:"For companies/fleets we offer monthly custom packages."
+      },
+      footer:{
+        blurb:"Premium mobile/on-site detailing across Halle, Buizingen, Huizingen, Tubize, Rebecq, Waterloo & Uccle.",
+        quick:"Quick links",
+        contact:"Contact"
+      }
     }
   };
 
@@ -462,13 +661,13 @@
     document.documentElement.lang = lang;
     $('[data-i]').forEach(node=>{
       const path = node.getAttribute('data-i');
-      const value = path.split('.').reduce((a,k)=>a?.[k], t);
-      if(typeof value === 'string'){ setText(node, value) }
+      const value = path.split('.').reduce((a,k)=>a && a[k]!==undefined ? a[k] : undefined, t);
+      if(typeof value === 'string'){ setText(node, value); }
     });
     $('[data-i-placeholder]').forEach(node=>{
       const path = node.getAttribute('data-i-placeholder');
-      const value = path.split('.').reduce((a,k)=>a?.[k], t);
-      if(typeof value === 'string'){ setPlaceholder(node, value) }
+      const value = path.split('.').reduce((a,k)=>a && a[k]!==undefined ? a[k] : undefined, t);
+      if(typeof value === 'string'){ setPlaceholder(node, value); }
     });
     for(let i=0;i<5;i++){
       const th = document.querySelector(`[data-i="pricing.cats.${i}"]`);
@@ -491,7 +690,8 @@
       if(oEl) oEl.textContent=t.contact.opts[i];
     }
     document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
-    document.querySelector(`.lang-switch button[data-lang="${lang}"]`).classList.add('active');
+    const activeBtn = document.querySelector(`.lang-switch button[data-lang="${lang}"]`);
+    if(activeBtn) activeBtn.classList.add('active');
   }
 
   // Init
