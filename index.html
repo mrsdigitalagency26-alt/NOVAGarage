@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NOVA Garage – Detailing premium</title>
   <meta name="description" content="NOVA Garage – Detailing auto premium, clients heureux et résultats professionnels." />
+  <meta name="theme-color" content="#0b1220" />
+
   <style>
     :root{
       --bg:#0b1220;--card:#0f1a2b;--muted:#99a3b3;
-      --acc:#25d366;--line:#22314b;--text:#e6eefc;--brand:#35c6f6
+      --acc:#25d366;--line:#22314b;--text:#e6eefc;--brand:#35c6f6;
     }
     *{box-sizing:border-box}
     html,body{
@@ -30,20 +32,25 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:12px 0;
     }
+    .nav .links{
+      display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    }
     .nav .links a{
-      margin:0 10px;color:#cfe0ff;
-      padding-bottom:2px;
+      color:#cfe0ff;
+      padding:6px 8px;
+      border-radius:10px;
     }
     .nav .links a.active{
       color:#fff;
-      border-bottom:2px solid var(--brand);
+      box-shadow:0 0 0 2px rgba(53,198,246,.35) inset;
     }
 
     .btn{
-      display:inline-flex;align-items:center;gap:8px;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
       background:var(--acc);color:#042e11;border:0;
-      border-radius:999px;padding:10px 16px;font-weight:600;
+      border-radius:999px;padding:10px 16px;font-weight:700;
       cursor:pointer;text-decoration:none;
+      white-space:nowrap;
     }
     .btn.outline{
       background:transparent;color:var(--text);border:1px solid var(--line)
@@ -78,7 +85,7 @@
       .nav{flex-direction:column;align-items:flex-start;gap:8px}
     }
 
-    /* Font style NOVA GARAGE (stil logo) */
+    /* Style logo */
     .nova-title{
       font-family:"Impact","Anton",system-ui,sans-serif;
       font-weight:900;
@@ -95,29 +102,51 @@
     }
     .nova-title::first-letter{color:#66e3ff;}
 
-    /* Paginile interne */
+    /* Pages internes */
     [data-page]{display:none;}
     [data-page].active{display:block;}
+
+    /* Petites améliorations images */
+    .cover-16-9{
+      width:100%;
+      border-radius:16px;
+      object-fit:cover;
+      aspect-ratio:16/9;
+      background:#0a1424;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .cover-4-3{
+      border-radius:12px;
+      aspect-ratio:4/3;
+      object-fit:cover;
+      background:#0a1424;
+      border:1px solid rgba(255,255,255,.06);
+    }
   </style>
 </head>
-<body>
 
+<body>
 <header>
   <div class="container nav">
     <div style="display:flex;align-items:center;gap:12px">
       <span class="nova-title">NOVA GARAGE</span>
     </div>
-    <nav class="links">
-      <a data-page-link="home" class="active">Accueil</a>
-      <a data-page-link="happy">Happy clients</a>
-      <a href="#contact">Contact</a>
-      <a class="btn" target="_blank" href="https://wa.me/32489202801">WhatsApp</a>
+
+    <nav class="links" aria-label="Navigation principale">
+      <!-- Ajout href pour accessibilité + SEO -->
+      <a href="#home" data-page-link="home" class="active" aria-current="page">Accueil</a>
+      <a href="#happy" data-page-link="happy">Happy clients</a>
+
+      <!-- Contact : on force l'ouverture de Home puis scroll sur #contact -->
+      <a href="#contact" id="contactLink">Contact</a>
+
+      <a class="btn" target="_blank" rel="noopener" href="https://wa.me/32489202801">WhatsApp</a>
     </nav>
   </div>
 </header>
 
-<!-- PAGINA 1: HOME -->
-<main class="container hero" data-page="home">
+<!-- PAGE 1: HOME -->
+<main class="container hero active" data-page="home" id="home">
   <section class="grid grid-2">
     <div>
       <h1>Not only clean — <span style="color:#66e3ff">NOVA clean.</span></h1>
@@ -126,13 +155,15 @@
         et obsession du détail. Service mobile ou en atelier pour particuliers
         et professionnels.
       </p>
+
       <div style="margin-top:18px">
         <div class="badge">
           Halle • Buizingen • Huizingen • Tubize • Rebecq • Waterloo • Uccle
         </div>
       </div>
-      <p style="margin-top:18px">
-        <a class="btn" target="_blank" href="https://wa.me/32489202801">
+
+      <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/32489202801">
           Demander un devis WhatsApp
         </a>
         <a class="btn outline"
@@ -140,43 +171,44 @@
           Par e-mail
         </a>
       </p>
+
       <div class="grid grid-3" style="margin-top:14px">
         <div class="badge">Intérieur Premium</div>
         <div class="badge">Extérieur Premium</div>
         <div class="badge">Combiné Deluxe</div>
       </div>
+
       <p class="muted" style="margin-top:10px">
         Service client 5★ – satisfait ou refait.
       </p>
     </div>
 
     <aside class="card">
+      <!-- ✅ Chemin corrigé + fallback si 404 -->
       <img
-        src="IMG_7847.jpeg"
+        src="assets/images/IMG_7847.jpeg"
         alt="Mercedes blanche préparée par NOVA Garage"
-        style="width:100%;border-radius:16px;object-fit:cover;aspect-ratio:16/9"
+        class="cover-16-9"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80';"
       />
+
       <div class="grid grid-3" style="margin-top:12px;text-align:center">
         <div class="badge">Wash pro</div>
         <div class="badge">Protection</div>
         <div class="badge">Finition</div>
       </div>
+
       <div class="card" style="margin-top:12px">
-        <div style="font-weight:700;margin-bottom:6px">Réservation rapide</div>
+        <div style="font-weight:800;margin-bottom:6px">Réservation rapide</div>
         <div class="grid" style="gap:8px">
-          <a class="btn" target="_blank" href="https://wa.me/32489202801">
-            WhatsApp
-          </a>
-          <a class="btn outline"
-             href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
-            Email
-          </a>
+          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/32489202801">WhatsApp</a>
+          <a class="btn outline" href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">Email</a>
         </div>
       </div>
     </aside>
   </section>
 
-  <!-- mică secțiune contact în pagina Home -->
   <section id="contact" style="margin-top:40px">
     <div class="card">
       <h2>Contact & devis</h2>
@@ -184,12 +216,11 @@
         Envoyez-nous un message avec le modèle de votre voiture et quelques photos,
         on vous répond rapidement avec une offre personnalisée.
       </p>
-      <p style="margin-top:12px">
-        <a class="btn" target="_blank" href="https://wa.me/32489202801">
+      <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/32489202801">
           WhatsApp: +32 489 20 28 01
         </a>
-        <a class="btn outline"
-           href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
+        <a class="btn outline" href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
           Email: novagarage.mn@gmail.com
         </a>
       </p>
@@ -197,8 +228,8 @@
   </section>
 </main>
 
-<!-- PAGINA 2: HAPPY CLIENTS -->
-<main class="container hero" data-page="happy">
+<!-- PAGE 2: HAPPY CLIENTS -->
+<main class="container hero" data-page="happy" id="happy">
   <section class="card">
     <h1>Happy clients</h1>
     <p class="muted">
@@ -211,56 +242,60 @@
     <h2>Galerie</h2>
     <p class="muted">
       Toutes les photos ci-dessous sont des véhicules réellement traités par NOVA Garage.
-      Place-les simplement dans le même dossier que ce fichier <code>index.html</code>
-      avec les noms exacts folosiți mai jos.
+      Mets-les dans <code>assets/images/</code> avec les noms exacts.
     </p>
 
     <div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
-      <!-- 1: CLA Shooting Brake interior (IMG_8600) -->
       <figure class="card" style="padding:10px">
-        <img src="IMG_8600.jpeg"
+        <img src="assets/images/IMG_8600.jpeg"
              alt="Intérieur Mercedes CLA Shooting Brake"
-             style="border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+             class="cover-4-3"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1400&q=80';">
         <figcaption class="muted" style="margin-top:6px;font-size:13px">
           Mercedes CLA Shooting Brake – intérieur détaillé de nuit.
         </figcaption>
       </figure>
 
-      <!-- 2: Mercedes albă (IMG_7847) -->
       <figure class="card" style="padding:10px">
-        <img src="IMG_7847.jpeg"
+        <img src="assets/images/IMG_7847.jpeg"
              alt="Mercedes AMG blanche"
-             style="border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+             class="cover-4-3"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80';">
         <figcaption class="muted" style="margin-top:6px;font-size:13px">
           Mercedes AMG – extérieur après lavage & protection.
         </figcaption>
       </figure>
 
-      <!-- 3: BMW albastru la benzinărie (IMG_2601) -->
       <figure class="card" style="padding:10px">
-        <img src="IMG_2601.jpeg"
-             alt="BMW bleu à la station-service"
-             style="border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+        <img src="assets/images/IMG_2601.jpeg"
+             alt="BMW bleue à la station-service"
+             class="cover-4-3"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80';">
         <figcaption class="muted" style="margin-top:6px;font-size:13px">
           BMW Série 3 Coupé – entretien régulier, prêt pour la route.
         </figcaption>
       </figure>
 
-      <!-- 4: V-Class interior (IMG_3251) -->
       <figure class="card" style="padding:10px">
-        <img src="IMG_3251.jpeg"
+        <img src="assets/images/IMG_3251.jpeg"
              alt="Intérieur Mercedes V-Class"
-             style="border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+             class="cover-4-3"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1605559424843-9e9c0d2f1e3e?auto=format&fit=crop&w=1400&q=80';">
         <figcaption class="muted" style="margin-top:6px;font-size:13px">
           Mercedes V-Class – intérieur nettoyé et protégé pour la famille.
         </figcaption>
       </figure>
 
-      <!-- 5: BMW albastru în natură (IMG_5689) -->
       <figure class="card" style="padding:10px">
-        <img src="IMG_5689.jpeg"
-             alt="BMW bleu sur chemin"
-             style="border-radius:12px;aspect-ratio:4/3;object-fit:cover">
+        <img src="assets/images/IMG_5689.jpeg"
+             alt="BMW bleue sur chemin"
+             class="cover-4-3"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80';">
         <figcaption class="muted" style="margin-top:6px;font-size:13px">
           BMW Série 3 Coupé – finition extérieure glossy après traitement.
         </figcaption>
@@ -275,12 +310,11 @@
         Envoie-nous quelques photos de ta voiture sur WhatsApp ou par e-mail
         et on te propose le bon forfait (intérieur, extérieur ou combiné).
       </p>
-      <p style="margin-top:12px">
-        <a class="btn" target="_blank" href="https://wa.me/32489202801">
+      <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" target="_blank" rel="noopener" href="https://wa.me/32489202801">
           WhatsApp: +32 489 20 28 01
         </a>
-        <a class="btn outline"
-           href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
+        <a class="btn outline" href="mailto:novagarage.mn@gmail.com?subject=Demande%20devis%20-%20NOVA%20Garage">
           Email: novagarage.mn@gmail.com
         </a>
       </p>
@@ -304,31 +338,43 @@
 </footer>
 
 <script>
-  // comutare între paginile "home" și "happy"
+  // Switch entre pages "home" et "happy"
   const pageLinks = document.querySelectorAll('[data-page-link]');
   const pages = document.querySelectorAll('[data-page]');
+  const contactLink = document.getElementById('contactLink');
 
   function showPage(name){
     pages.forEach(p=>{
       p.classList.toggle('active', p.getAttribute('data-page') === name);
     });
     pageLinks.forEach(a=>{
-      a.classList.toggle('active', a.getAttribute('data-page-link') === name);
+      const isActive = a.getAttribute('data-page-link') === name;
+      a.classList.toggle('active', isActive);
+      if (isActive) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
     });
-    window.scrollTo({top:0,behavior:'instant'});
+    window.scrollTo({ top: 0, behavior: 'auto' }); // "instant" n'est pas standard
   }
 
   pageLinks.forEach(a=>{
     a.addEventListener('click', (e)=>{
       e.preventDefault();
-      const target = a.getAttribute('data-page-link');
-      showPage(target);
+      showPage(a.getAttribute('data-page-link'));
     });
   });
 
-  // pagina default la încărcare
+  // Contact : on force Home puis scroll vers la section
+  contactLink.addEventListener('click', (e)=>{
+    e.preventDefault();
+    showPage('home');
+    // petit délai pour être sûr que la page est visible
+    setTimeout(()=>{
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 30);
+  });
+
+  // Page par défaut
   showPage('home');
 </script>
-
 </body>
 </html>
